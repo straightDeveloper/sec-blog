@@ -7,9 +7,9 @@ jinja_environment = jinja2.Environment(autoescape=True,loader=jinja2.FileSystemL
 
 class MainPage(webapp2.RequestHandler):
 	def get(self):
-		self.response.headers['Content-Type'] = 'text/plain'
+		self.response.headers['Content-Type'] = 'text/html'
 
-		template = jinja_environment.get_template("stupidTemplate.html");
+		template = jinja_environment.get_template("BlogMain.html");
 
 		self.response.write(template.render({}))
 
