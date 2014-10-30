@@ -13,18 +13,14 @@
 		<div class="links-outer-container">
 
 			<div class="links-inner-container">
-
-				<a href="#" class="page-link">
-					DA
-				</a>
-
-				<a href="#" class="page-link">
-					order of pheonix
-				</a>
+				{% if content!=None %}
+					{% for link in content %}
+					<a href="/blog/{{ link.key.id()}}" class="page-link">{{ link.name }}</a>
+					{% endfor %}
+				{% endif %}
 				<form method="post">
-					<input type="text">
-					<input type="hidden" value="">
-
+					<input name="name" type="text">
+					
 				</form>
 
 			</div>
