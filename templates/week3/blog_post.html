@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+
+
+<html>
+
+	<head>
+
+		<title>newPost</title>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/week3/main.css">
+
+	</head>
+
+
+	<body>
+	
+		<form method="post">
+			<div class="footer">
+			<label>Title <input type="text" class="input-title" name="subject" value="{{ title }}"></label>
+			<label>Content<textarea name="content" class="input-text">{{ text }}</textarea></label>
+			<input type="submit">
+			</div>
+		</form>
+		{% if error %}
+			<div class="error">incorrect submission</div>
+		{% endif %}
+
+
+	</body>
+
+
+
+
+</html>

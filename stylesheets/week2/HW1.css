@@ -1,0 +1,11 @@
+.header{
+	color: #124;
+	font-size: 35px;
+}
+.area{
+	width: 702px;
+	height: 270px;
+	resize: none;
+	color: red;
+	font-size: 15px;
+}

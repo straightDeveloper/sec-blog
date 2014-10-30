@@ -1,0 +1,37 @@
+<html>
+
+
+	<head>
+
+
+		<title>CS 253 BLOG</title>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/week3/main.css">
+
+	</head>
+
+	<body class="container-fluid">
+		<a href="{{ main_url }}/" class="blog-title non_link blog_color"><h1>CS253 Blog</h1></a>
+		
+		<div class="row">
+			<div class="col-md-8 col-md-pull-2 col-md-push-2">
+				{% block content %}
+					{% include "/week3/postStub.html" %}			
+				{% endblock %}
+		
+				{% block last%}
+				{% endblock %}
+
+			</div>
+		</div>
+	</body>
+
+
+
+
+
+
+
+
+
+</html>

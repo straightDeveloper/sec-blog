@@ -1,0 +1,73 @@
+
+.art-title{
+	/*background-color: #8B615B;
+	color: white;*/
+	font-size: 40px;
+	padding-left: 8px;
+	border-bottom: 1px solid black;
+}
+.small-top-margin{
+	margin-top: 50px;
+
+
+}
+
+
+
+.art-post{
+	margin-bottom: 5px;
+	min-height: 375px;
+	padding: 14px;
+	color: black;
+	border-radius: 10px;
+	background-color: #e1ebf2;
+
+
+}
+.art-content{
+	padding-left: 30px;
+	padding-top: 30px;
+	font-size: 20px;
+	white-space: pre-wrap !important; /* Mozilla, since 1999 */
+	/*word-break: break-all;*/
+	word-wrap: break-word;
+
+}
+
+.art-post,.art-margin{
+
+	background-color: #e1ebf2;
+
+
+
+}
+
+.art-small-wrapper{
+	margin-bottom: 30px;
+
+}
+
+.art-margin{
+	margin-bottom:25px;
+	padding: 5px;
+	border: 3px solid #e1ebf2; 
+
+}
+
+.art-title-resizable{
+	width: 50%;
+
+
+}
+
+.art-write{
+	width: 95%;
+	height: 250px;
+	resize: none;
+}
+
+
+.art-submiter{
+	border-radius:3px;
+	margin-top:5px;
+}

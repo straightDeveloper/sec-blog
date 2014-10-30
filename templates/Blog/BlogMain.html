@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.0/build/cssnormalize/cssnormalize-min.css">
+
+		<link href='http://fonts.googleapis.com/css?family=Roboto:700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap-theme.min.css">
+
+		<link rel="stylesheet" type="text/css" href="/stylesheets/BlogMain.css">
+		{% block head %}
+			<title>MyTitle</title>
+		{% endblock %}
+		
+
+	</head>
+
+	<body>
+
+		<div class="">
+			<div class="blog-title-header">
+					
+				<img src="/imgs/t1.png" height="70px">
+				<div class="blog-title-write"> My Trophy Cup </div>
+				
+			</div>
+			
+			<div class="body-color">
+				<div class="container blog-white">
+
+					<div class="center-block text-center blog-page-title">
+						MainPage
+					</div>					
+
+
+					<div class="blog-boxa">
+						{% block body %}
+
+						{% endblock %}					
+
+					</div>
+
+
+				</div>
+			</div>
+
+
+		</div>
+
+
+
+	</body>
+
+
+
+
+
+</html>
+

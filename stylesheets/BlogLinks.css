@@ -1,0 +1,35 @@
+*{
+/*	border: 1px solid red;
+*/
+}
+
+
+.links-outer-container{
+	border: 3px solid #ee1133 !important;
+	padding: 10px;
+	background-color: rgb(246, 181, 153);
+}
+
+.links-inner-container{
+	background-color: white !important;
+	border: 3px solid rgb(211, 90, 127);
+
+}
+
+.page-link{
+
+	display: block;
+	min-height: 100px;
+	margin-bottom: 3px;
+	background-color: #e1ebf2;
+	color: black;
+	padding-top: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-size: 30px; 
+	text-decoration: none !important;
+}
+
+.page-link:hover{
+	background-color: #c1cbd2 !important;
+}

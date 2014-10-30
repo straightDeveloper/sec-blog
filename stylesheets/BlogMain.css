@@ -6,7 +6,7 @@ body{
 
 .blog-white{
 	background-color: white;
-
+	
 }
 
 
@@ -50,31 +50,6 @@ body{
 	margin-top: 104px;
 }
 
-.art-title{
-	/*background-color: #8B615B;
-	color: white;*/
-	font-size: 40px;
-	padding-left: 8px;
-	border-bottom: 1px solid black;
-}
-
-.art-post{
-	margin-bottom: 5px;
-	min-height: 375px;
-	padding: 14px;
-	color: black;
-	border-radius: 10px;
-	background-color: #e1ebf2;
-
-
-}
-.art-content{
-	padding-left: 30px;
-	padding-top: 30px;
-	font-size: 20px;
-
-}
-
 
 .brown-border{
 	border: solid 4px rgb(210, 58, 58);
@@ -85,46 +60,10 @@ body{
 
 }
 
-.art-wrapper{
+.Blog-page-wrapper{
 	min-height: 1000px;
 
 }
 
-.art-post,.art-margin{
-
-	background-color: #e1ebf2;
 
 
-
-}
-
-.art-small-wrapper{
-	margin-bottom: 30px;
-
-}
-
-.art-margin{
-	margin-bottom:25px;
-	padding: 5px;
-	border: 3px solid #e1ebf2; 
-
-}
-
-.art-title-resizable{
-	width: 50%;
-
-
-}
-
-.art-write{
-	width: 95%;
-	height: 250px;
-	resize: none;
-}
-
-
-.small-top-margin{
-	margin-top: 50px;
-
-
-}

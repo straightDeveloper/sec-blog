@@ -1,0 +1,8 @@
+<div class="blog_post container-fluid">
+	<div class="blog_post_title row">
+		<a href="{{ main_url }}/{{ post.key.id() }}/" class="blog_color col-md-10 non_link post_title">{{ post.title }}</a>
+		<div  class="col-md-2" style=""><div class="blog_post_date">{{ post.timeOfCreation.strftime("%b %d, %Y") }}</div></div>
+	</div>
+	<div class="blog_text">{{ post.text }}</div>
+	
+</div>
