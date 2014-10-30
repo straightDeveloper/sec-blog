@@ -3,7 +3,7 @@ from week1 import week1_task_1
 from week3.week3 import Week3_Blog , week3_blog_url ,week3_Blog_permalink, week3_permalink_url,week3_Blog_NewPosts,week3_Blog_NewPosts_url
 #from week2 import week2_mini_task_1_1,week2_mini_task_1_2,week2_HW1,week2_HW2_1,week2_HW2_2
 #from week2_a import template_tst_1,template_tst_2,template_tst_3,FizzBuzz
-from BLog.blog import blog
+from BLog.blog import blog,blog_url
 
 def urlify(url):
 	return url+"/?$"
@@ -22,4 +22,4 @@ week3_app = [( urlify(week3_blog_url) ,Week3_Blog ),( urlify(week3_permalink_url
 
 
 application = webapp2.WSGIApplication([
-	('/week1/task1/', week1_task_1),('/blog/',blog),]+week3_app, debug=True)
+	('/week1/task1/', week1_task_1),(urlify(blog_url),blog),]+week3_app, debug=True)

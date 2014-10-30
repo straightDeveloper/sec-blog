@@ -1,4 +1,4 @@
-{% extends "/Blog/BlogMain.html" %}
+{% extends "Blog/BlogMain.html" %}
 
 
 {% block head %}
@@ -15,15 +15,18 @@
 					<div class="row">
 
 						<div class="col-md-10 col-md-push-1 col-md-pull-1 art-small-wrapper">
+								{% if content %}
+								{% for post in content %}
+									<div class="art-post">
 
-								
-								<div class="art-post">
-									<div class="art-title">Title</div>
+									
+										<div class="art-title">{{ post.title }}</div>
 
-									<div class="art-content">contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</div> 
-								</div>
-							
-								
+										<div class="art-content">{{ post.text }}</div>
+										 
+									</div>
+								{% endfor %}
+								{% endif %}
 								<form method="post" class="art-post small-top-margin">
 									<div class="art-title">
 										<input name="subject" class="art-title-resizable">
