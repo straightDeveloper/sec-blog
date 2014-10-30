@@ -16,16 +16,16 @@
 
 						<div class="col-md-10 col-md-push-1 col-md-pull-1 art-small-wrapper">
 								{% if content %}
-								{% for post in content %}
-									<div class="art-post">
+									{% for post in content %}
+										<div class="art-post">
 
-									
-										<div class="art-title">{{ post.title }}</div>
+										
+											<div class="art-title">{{ post.title }}</div>
 
-										<div class="art-content">{{ post.text }}</div>
-										 
-									</div>
-								{% endfor %}
+											<div class="art-content">{{ post.text }}</div>
+											 
+										</div>
+									{% endfor %}
 								{% endif %}
 								<form method="post" class="art-post small-top-margin">
 									<div class="art-title">

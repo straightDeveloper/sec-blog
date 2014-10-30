@@ -10,21 +10,28 @@
 
 {% block body %}
 	<div class="col-md-10 col-md-pull-1 col-md-push-1">
-		<div class="links-outer-container">
+		{% if content %}
+			<div class="links-outer-container">
 
-			<div class="links-inner-container">
-				{% if content!=None %}
+				<div class="links-inner-container">
 					{% for link in content %}
-					<a href="/blog/{{ link.key.id()}}" class="page-link">{{ link.name }}</a>
-					{% endfor %}
-				{% endif %}
-				
-			</div>
+						<div class="">
+						<a href="/blog/{{ link.key.id() }}" class="page-link">{{ link.name }}
+						<form method="post"style="float:right;">
+							<input type="hidden" name="target" value="deleteLink">
+							<input type="hidden" name="targetValue" value="{{ link.key.id() }}">
+							<input type="submit" value="delete">
+						 </form>
+						</a>
+						
+						 </div>
+						{% endfor %}
+					
+				</div>
 			
-
-
-
-		</div>
+			</div>
+		{% endif %}
+	
 		<form method="post">
 			<input name="name" type="text">
 			<input type="checkbox" checked="true" name="isLinkPage">

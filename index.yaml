@@ -15,3 +15,9 @@ indexes:
   - name: parent
   - name: timeOfCreation
     direction: desc
+
+- kind: Post
+  properties:
+  - name: parent
+  - name: time
+    direction: desc
