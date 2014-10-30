@@ -18,16 +18,19 @@
 					<a href="/blog/{{ link.key.id()}}" class="page-link">{{ link.name }}</a>
 					{% endfor %}
 				{% endif %}
-				<form method="post">
-					<input name="name" type="text">
-					
-				</form>
-
+				
 			</div>
+			
 
 
 
 		</div>
+		<form method="post">
+			<input name="name" type="text">
+			<input type="checkbox" checked="true" name="isLinkPage">
+			<input type="submit" value="go" class="btn btn-lg btn-primary"> 					
+		</form>
+
 
 
 	</div>
