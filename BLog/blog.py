@@ -90,7 +90,7 @@ class blog(Handler):
 			content = self.getPostContent();
 
 		
-		self.render(self.template,content=content)
+		self.render(self.template,content=content,myId=self.ID);
 	
 	
 
@@ -107,6 +107,13 @@ class blog(Handler):
 		if target:
 			if target == "deleteLink":
 				self.deleteLink( self.get_form("targetValue") ) ;
+			elif target == "clearLink":
+				self.clearLink( self.ID );
+			elif target == "deletePost":
+				self.deletePost( self.get_form("targetValue") );
+
+			else:
+				self.redirectPage(mainPageName);
 		else:
 			if self.isLinkPage:
 				post = self.get_posted_link_data();
@@ -136,13 +143,20 @@ class blog(Handler):
 
 	def deleteLink(self,ids):
 		self.mainDelete(ids,linkDelete)
+	
+	def deletePost(self,ids):
+		self.mainDelete(ids,postDelete)
+
+	def clearLink(self,ids):
+		self.mainDelete(ids,linkNodeDelete)
+	
 
 	def mainDelete(self,ids,deleteMethod):
 		try:
 			ID = int(ids);
 		except:
-			return;
-
+			ID = None; 
+			
 
 		deleteMethod(ID=ID);
 
@@ -157,31 +171,39 @@ class blog(Handler):
 
 
 
-def linkNodeDelete():
+def linkNodeDelete(ID):
 
-	link = Page.get_by_id(ID);
+	link = None;
+	if ID:
+		link = Page.get_by_id(ID);
+	myKey = None;
 	if link:
 		myKey = link.key;
-		for m in Page.query(Page.parent == myKey):
-			linkDelete(m.key.id());
+	
+	 
+	for m in Page.query(Page.parent == myKey):
+		linkDelete(m.key.id());
 		
-		for m in Post.query(Post.parent == myKey):
-			m.key.delete();
+	for m in Post.query(Post.parent == myKey):
+		m.key.delete();
+
 
 	return link;
 
 def linkDelete(ID):
-		link = Page.get_by_id(ID);
-		if link:
-			myKey = link.key;
-			for m in Page.query(Page.parent == myKey):
-				linkDelete(m.key.id());
-			
-			for m in Post.query(Post.parent == myKey):
-				m.key.delete();
-			
-			myKey.delete();
+	link = linkNodeDelete(ID);
+	if link:
+		link.key.delete();	
+		#	myKey.delete();
 			
 			#sonkeys = [m.key for m in page.query(Post.parent=myKey)];
 			#ndb.delete_multi(sonkeys);
+
+def postDelete(ID):
+	if ID:
+		myPost = Post.get_by_id(ID);
+		if myPost:
+			myPost.key.delete();
+
+
 

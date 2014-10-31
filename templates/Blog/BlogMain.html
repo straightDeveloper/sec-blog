@@ -38,7 +38,11 @@
 						MainPage
 					</div>					
 
-
+					<form method="post" style="float:right">
+						<input type="hidden" name="target" value="clearLink">
+						<input type="hidden" name="targetValue" value="{{ myId }}">
+						<input type="submit" class="btn btn-danger" value="delete">
+					</form>
 					<div class="blog-boxa">
 						{% block body %}
 

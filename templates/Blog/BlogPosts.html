@@ -20,7 +20,14 @@
 										<div class="art-post">
 
 										
-											<div class="art-title">{{ post.title }}</div>
+											<div class="art-title">{{ post.title }}
+											<form method="post"style="float:right;">
+												<input type="hidden" name="target" value="deletePost">
+												<input type="hidden" name="targetValue" value="{{ post.key.id() }}">
+												<input type="submit" class="btn btn-danger" value="delete">
+						 					</form>
+
+											</div>
 
 											<div class="art-content">{{ post.text }}</div>
 											 
