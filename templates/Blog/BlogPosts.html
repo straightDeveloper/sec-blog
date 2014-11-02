@@ -21,12 +21,9 @@
 
 										
 											<div class="art-title">{{ post.title }}
-											<form method="post"style="float:right;">
-												<input type="hidden" name="target" value="deletePost">
-												<input type="hidden" name="targetValue" value="{{ post.key.id() }}">
-												<input type="submit" class="btn btn-danger" value="delete">
-						 					</form>
-
+											{% set targetPurpose = "deletePost" %}					
+											{% set targetArgument = post.key.id() %}				{% include "Blog/delete_form.html" %}
+											
 											</div>
 
 											<div class="art-content">{{ post.text }}</div>
@@ -34,6 +31,7 @@
 										</div>
 									{% endfor %}
 								{% endif %}
+								{% if is_user %}
 								<form method="post" class="art-post small-top-margin">
 									<div class="art-title">
 										<input name="subject" class="art-title-resizable">
@@ -45,6 +43,7 @@
 									</div>
 
 								</form>
+								{% endif %}
 								
 						</div>
 

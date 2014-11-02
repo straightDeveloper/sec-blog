@@ -15,7 +15,8 @@ class blog(Handler):
 	template = mainTemplates[1];
 	ID = None;
 	isLinkPage = True;
-
+	is_user = False;
+	
 	def getParent(self):
 		parent = None;
 		if self.ID:
@@ -74,8 +75,6 @@ class blog(Handler):
 			if ids == mainPageName:
 				self.ID = None;
 				return;
-
-
 		
 		self.redirectPage(mainPageName);
 
@@ -90,7 +89,7 @@ class blog(Handler):
 			content = self.getPostContent();
 
 		
-		self.render(self.template,content=content,myId=self.ID);
+		self.render(self.template,content=content,myId=self.ID,is_user=self.is_user);
 	
 	
 
@@ -160,13 +159,6 @@ class blog(Handler):
 
 		deleteMethod(ID=ID);
 
-		#link = Page.get_by_id(ID);
-		#if link:
-		#	myKey = link.key;
-		#	sonKeys = [m.key for m in Page.query(Page.parent=myKey)]
-		#	ndb.delete_multi(sonkeys);
-		#	sonkeys = [m.key for m in page.query(Post.parent=myKey)];
-		#	ndb.delete_multi(sonkeys);
 		self.redirectPage(self.ID);
 
 

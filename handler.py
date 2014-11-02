@@ -9,12 +9,25 @@ jinja_environment = jinja2.Environment(autoescape=True,loader=jinja2.FileSystemL
 
 class Handler(webapp2.RequestHandler):
 
+
+
+	def add_cookie(self,header,value):
+		cookie = "%s=%s"%(header,value);
+		self.set_cookie(cookie);
+
+	def set_cookie(self,cookie):
+		self.response.headers.add_header("Set-Cookie",cookie);
+		
+
 	def get_form(self,name):
 		return self.request.get(name);
+	
+
 	def get_filtered_form(self,name):
 		name = self.request.get(name);
 		name = self.removeSpaces(name);
 		return name;
+	
 	def removeSpaces(self,string):
 		string = re.sub(r'^[ \n]*',"",string);
 		string = re.sub(r'[ \n]*$',"",string);

@@ -17,11 +17,11 @@
 					{% for link in content %}
 						<div class="">
 						<a href="/blog/{{ link.key.id() }}" class="page-link">{{ link.name }}
-						<form method="post"style="float:right;">
-							<input type="hidden" name="target" value="deleteLink">
-							<input type="hidden" name="targetValue" value="{{ link.key.id() }}">
-							<input type="submit" class="btn btn-danger" value="delete">
-						 </form>
+						
+						{% set targetPurpose = "deleteLink" %}					
+						{% set targetArgument = link.key.id() %}					
+						{% include "Blog/delete_form.html" %}
+					
 						</a>
 						
 						 </div>
@@ -31,13 +31,13 @@
 			
 			</div>
 		{% endif %}
-	
-		<form method="post">
-			<input name="name" type="text">
-			<input type="checkbox" checked="true" name="isLinkPage">
-			<input type="submit" value="go" class="btn btn-lg btn-primary"> 					
-		</form>
-
+		{% if is_user %}
+			<form method="post">
+				<input name="name" type="text">
+				<input type="checkbox" checked="true" name="isLinkPage">
+				<input type="submit" value="go" class="btn btn-lg btn-primary"> 					
+			</form>
+		{% endif %}
 
 
 	</div>
