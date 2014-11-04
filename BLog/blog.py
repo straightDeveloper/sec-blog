@@ -3,9 +3,12 @@ import webapp2
 import jinja2
 from model import Page,Post
 from handler import Handler
-
+import hashlib
 mainPageName = "MainPage"
 blog_url = r"/blog/(\d+|%s)"%mainPageName;
+
+username = "mostafa";
+password = '53d124408addf1eb1de84f3ff866ead8';
 
 
 class blog(Handler):
@@ -15,7 +18,8 @@ class blog(Handler):
 	template = mainTemplates[1];
 	ID = None;
 	isLinkPage = True;
-	is_user = False;
+	is_user = True;
+
 	
 	def getParent(self):
 		parent = None;
@@ -46,11 +50,6 @@ class blog(Handler):
 		self.redirect( blog_url.replace( "(\d+|%s)" % mainPageName , str(ids) ) );
  
 
-
-
-
-
-
 	def getLinkContent(self):
 		return Page.query( Page.parent == self.getParentKey() ).order(-Page.timeOfCreation)
 
@@ -61,8 +60,21 @@ class blog(Handler):
 	def getPostContent(self):
 		return Post.query( Post.parent == self.getParentKey() ).order(-Post.time);
 	
+	def check_user(self):
+		isUser = self.get_secure_cookie("user");
+		if isUser == "t":
+			self.is_user = True;
+			
+		else:
+			self.is_user = False;
+
+		#self.is_user = True;		
+		return self.is_user;
 
 	def set_ID_and_Type(self,ids):
+		if not self.check_user():
+			pass
+			#self.add_secure_cookie("user","t");
 		try:
 			self.ID = int(ids);
 			parent = self.getParent();
@@ -85,7 +97,6 @@ class blog(Handler):
 			content = self.getLinkContent();
 		
 		else:
-		
 			content = self.getPostContent();
 
 		
@@ -99,11 +110,37 @@ class blog(Handler):
 		self.set_ID_and_Type(ids);
 		self.writePage();
 
+
+	def check_delete_target(self,target):
+		if target == "deleteLink":
+				self.deleteLink( self.get_form("targetValue") ) ;
+		elif target == "clearLink":
+			self.clearLink( self.ID );
+		elif target == "deletePost":
+			self.deletePost( self.get_form("targetValue") );
+
+		else:
+			self.redirectPage(mainPageName);
+			return False;
+
+		return True;	
+
+
 	def post(self,ids):
 		self.set_ID_and_Type(ids);
 		target = self.get_form("target");
+		
+		if target == "signin":
+			name = self.get_form("sign_name");
+			mypassword = self.get_form("password");
+			if name != None and mypassword != None:
+				if name == username and hashlib.md5(mypassword).hexdigest() == password:
+					self.add_secure_cookie("user","t");
+				else:
+					self.write("%s %s"%(name,mypassword));
+					return
 
-		if target:
+		elif target:
 			if target == "deleteLink":
 				self.deleteLink( self.get_form("targetValue") ) ;
 			elif target == "clearLink":

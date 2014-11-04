@@ -1,0 +1,13 @@
+{% if not is_user %}
+	<form method="post" class="blog_signup_form">
+		<input name="sign_name">
+		<input name="password" type="password">
+		<input type="hidden" name="target" value="signin">
+		<input type="submit" class="btn btn-success" value="signin">
+	</form>
+{%else%}
+	<form method="post" class="blog_signup_form">
+		<input type="hidden" name="target" value="signout">
+		<input type="submit" value="signout" class="btn btn-warning"> 
+	</form>	
+{%endif%}

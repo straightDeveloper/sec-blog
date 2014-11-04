@@ -2,15 +2,45 @@ import webapp2
 import jinja2
 import os
 import re
+import hmac
 
 jinja_environment = jinja2.Environment(autoescape=True,loader=jinja2.FileSystemLoader( os.path.join(os.path.dirname(__file__), 'templates') ) )
 
+debug_password= "1gag&242k*hc@@@141&gl&88r235^^_@@#22#&^"
+
+class BasicHandler(webapp2.RequestHandler):
+	SECRET = debug_password;	
+
+	def add_secure_cookie(self,header,value):
+		self.add_cookie( header , self.secure_cookie(value) );
+	
+	def hash_str(self,s):
+		return hmac.new(self.SECRET,s).hexdigest();
+
+	def secure_cookie(self,s):
+		return "%s|%s" % (s, self.hash_str(s));
 
 
-class Handler(webapp2.RequestHandler):
+	def get_secure_cookie(self,header):
+		naive_cookie = self.get_cookie(header);
+		if naive_cookie:
+			cookie_split = naive_cookie.split("|");
+		else:
+			return None;
 
+		if len(cookie_split) != 2:
+			return None;
 
+		value = cookie_split[0];
 
+		if naive_cookie == self.secure_cookie(value):
+			return value;
+
+		return None;
+
+	def get_cookie(self,header):
+		return self.request.cookies.get(header);
+		
 	def add_cookie(self,header,value):
 		cookie = "%s=%s"%(header,value);
 		self.set_cookie(cookie);
@@ -19,6 +49,10 @@ class Handler(webapp2.RequestHandler):
 		self.response.headers.add_header("Set-Cookie",cookie);
 		
 
+
+
+class Handler(BasicHandler):
+	#password = debug_password;
 	def get_form(self,name):
 		return self.request.get(name);
 	
@@ -43,3 +77,6 @@ class Handler(webapp2.RequestHandler):
 
 	def render(self,template,**kw):
 		self.write( self.render_str(template,**kw) );
+
+
+

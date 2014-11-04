@@ -10,7 +10,8 @@
 
 {% block body %}
 	<div class="col-md-10 col-md-pull-1 col-md-push-1">
-		{% if content %}
+		{% if content.count() > 0 %}
+			
 			<div class="links-outer-container">
 
 				<div class="links-inner-container">

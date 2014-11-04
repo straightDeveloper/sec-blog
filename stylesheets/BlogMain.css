@@ -1,8 +1,18 @@
 body{
 
 	background-color: rgb(197, 255, 197);
+	min-width: 400px;
+}
+
+.blog_signup_form{
+/*	display: inline-block;*/
+	position: absolute;
+	right:6px;
+	bottom: 5px;
+
 
 }
+
 
 .blog-white{
 	background-color: white;
@@ -11,6 +21,7 @@ body{
 
 
 .blog-title-header{
+	position: relative;
 	
 	background-color:#48f;
 	width: 100%;
