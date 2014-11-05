@@ -4,6 +4,13 @@
 		<input name="password" type="password">
 		<input type="hidden" name="target" value="signin">
 		<input type="submit" class="btn btn-success" value="signin">
+		{% if signin_error %}
+			<span style="color:red;">blank box</span>
+		{% endif %}
+		{% if signin_mistake %}
+			<span style="color:red;">incorrect user name or password</span>
+		{% endif %}
+
 	</form>
 {%else%}
 	<form method="post" class="blog_signup_form">

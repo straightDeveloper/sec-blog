@@ -41,6 +41,10 @@ class BasicHandler(webapp2.RequestHandler):
 	def get_cookie(self,header):
 		return self.request.cookies.get(header);
 		
+	def delete_cookie(self,header):
+		self.add_cookie(header,'');
+
+
 	def add_cookie(self,header,value):
 		cookie = "%s=%s"%(header,value);
 		self.set_cookie(cookie);
@@ -53,6 +57,21 @@ class BasicHandler(webapp2.RequestHandler):
 
 class Handler(BasicHandler):
 	#password = debug_password;
+	def empty_inputs(self,*p):
+		for inputs in p:
+			if inputs == None:
+				return True;
+		return False;
+	
+	def empty_input_str(self,*p):
+		for inputs in p:
+			if inputs == "":
+				return True;
+		return False;
+
+	def total_empty_input(self,*p):
+		return self.empty_input_str(*p) or self.empty_inputs(*p);  
+
 	def get_form(self,name):
 		return self.request.get(name);
 	
@@ -63,8 +82,7 @@ class Handler(BasicHandler):
 		return name;
 	
 	def removeSpaces(self,string):
-		string = re.sub(r'^[ \n]*',"",string);
-		string = re.sub(r'[ \n]*$',"",string);
+		string = re.sub(r'^ *',"",string);
 		return string;
 
 
