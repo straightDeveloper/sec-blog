@@ -6,6 +6,8 @@ class Page(ndb.Model):
 	parent = ndb.KeyProperty(kind='Page'); 
 	timeOfCreation = ndb.DateTimeProperty(auto_now_add=True);
 
+	def render(self,class_name=''):
+		return '<a href="/blog/%(url)s" class="%(class)s" >%(name)s</a>'%{'url':self.key.id(),'name':self.name, 'class': class_name}
 
 
 class Post(ndb.Model):

@@ -1,0 +1,5 @@
+<a href="/blog/MainPage">main</a>
+{%for page in ancestry%}
+	> <!--<a href="/blog/{{ page.key.id() }}">{{ page.name }}</a>-->
+	{{page.render()|safe}};
+{%endfor%}

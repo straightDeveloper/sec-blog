@@ -28,7 +28,23 @@ class blog(Handler):
 
 		return parent;
 	
-
+	def getPageParent(self,page):#get parent from its page
+		if page:
+			my_key = page.parent;
+			if my_key:
+				PID = my_key.id();
+				parent = Page.get_by_id(PID);
+				return parent;
+		return; 
+	
+	def find_ancestry(self):#find the pages till ancestry
+		lista = [];
+		page = self.getParent();
+		while page != None:
+			lista.append(page);	
+			page = self.getPageParent(page);
+		lista.reverse();
+		return lista;
 
 
 	def getParentKey(self):
@@ -100,7 +116,7 @@ class blog(Handler):
 			content = self.getPostContent();
 
 		
-		self.render(self.template,content=content,myId=self.ID,is_user=self.is_user,signin_error=signin_error,signin_mistake=signin_mistake,post_error=no_post);
+		self.render(self.template,content=content,myId=self.ID,is_user=self.is_user,signin_error=signin_error,signin_mistake=signin_mistake,post_error=no_post,ancestry=self.find_ancestry(),myPage=self.getParent());
 	
 	
 
@@ -176,15 +192,18 @@ class blog(Handler):
 			return;
 		elif signing_situation:#if signed in then redirect as usual
 			pass
-		elif self.check_delete_target(target):#check for delete posts
-			pass
+		elif self.is_user: 
+			if self.check_delete_target(target):#check for delete posts
+				pass
+			else:
+				adding_a_post_situation = self.check_post_content();# trying to find correct post
+				if adding_a_post_situation == "incorrect_submission":# if the post is incorrect
+					self.writePage(no_post = True);
+					return;
+				elif adding_a_post_situation == False:
+					self.redirectPage(mainPageName);# if no real post redirect to the mainpage
 		else:
-			adding_a_post_situation = self.check_post_content();# trying to find correct post
-			if adding_a_post_situation == "incorrect_submission":# if the post is incorrect
-				self.writePage(no_post = True);
-				return;
-			elif adding_a_post_situation == False:
-				self.redirectPage(mainPageName);# if no real post redirect to the mainpage
+			self.redirectPage(mainPageName);
 				
 		self.redirect(self.request.url);# after posting get the page again to see the result
 	
@@ -274,6 +293,8 @@ def postDelete(ID):
 		myPost = Post.get_by_id(ID);
 		if myPost:
 			myPost.key.delete();
+
+
 
 
 

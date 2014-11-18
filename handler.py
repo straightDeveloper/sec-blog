@@ -39,14 +39,15 @@ class BasicHandler(webapp2.RequestHandler):
 		return None;
 
 	def get_cookie(self,header):
-		return self.request.cookies.get(header);
+		return str( self.request.cookies.get(header) );
 		
 	def delete_cookie(self,header):
 		self.add_cookie(header,'');
 
 
 	def add_cookie(self,header,value):
-		cookie = "%s=%s"%(header,value);
+		cookie = "%s=%s"%(str(header),str(value));
+		cookie = str(cookie);
 		self.set_cookie(cookie);
 
 	def set_cookie(self,cookie):

@@ -35,12 +35,21 @@
 				<div class="container blog-white">
 
 					<div class="center-block text-center blog-page-title">
-						MainPage
+						{%if myPage%}
+							{{myPage.name}}
+						{%else%}
+							Main
+						{% endif %}
+						Page
 					</div>
 					{% set targetPurpose = "clearLink"%}					
 					{% set targetArgument = myId %}					
 					{% include "Blog/delete_form.html" %}
+
+					{%include "Blog/pagination.html"%}
 					<div class="blog-boxa">
+						
+						
 						{% block body %}
 
 						{% endblock %}					

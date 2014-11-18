@@ -3,6 +3,7 @@ import webapp2
 import jinja2
 import cgi
 import re
+from handler import Handler
 
 
 
@@ -68,11 +69,14 @@ class week2_HW2_2(webapp2.RequestHandler):
 		self.response.write(resp);
 
 
-class week2_HW2_1(webapp2.RequestHandler):
+class week2_HW2_1(Handler):
 	template = jinja_environment.get_template("week2/signup.html");
 	USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$");
 	Email_RE = re.compile(r"^[\S]+@[\S]+\.[\S]+$");
 	Pass_RE = re.compile(r"^.{3,20}$");
+	#MyUserName = "";
+
+
 
 	def notMatchRegularExp(RE,stringer):
 		not RE.match(stringer);
@@ -112,4 +116,13 @@ class week2_HW2_1(webapp2.RequestHandler):
 		if result["total"]:
 			self.response.write(self.template.render(result["errors"]));
 		else:
-			self.redirect("/week2/welcome?name=%s"%username);
+			#self.MyUserName = username;
+			#self.redirect("/week2/welcome?name=%s"%username);
+			self.atSuccess(username,pass1,email);
+
+	def atSuccess(self,username,password,email):
+		self.redirect("/week2/welcome?name=%s"%username);
+
+
+
+
